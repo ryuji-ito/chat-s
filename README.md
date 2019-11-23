@@ -3,28 +3,25 @@
 ## userテーブル
 |Column|Type|Options|
 |------|----|-------|
-|id|integer|null :false|
 |nickname|string|null: false|
 |email|string|null: false|
 |pass|string|null: false|
 
 ### Association
 - has_many :chat
-- has_many :chat_group
+- has_many :chat_group, through: :groups_users
 
 ## chat_group
 |Column|Type|Options|
 |------|----|-------|
-|group_id|integer|null :false, foreign_key: true|
 |group_name|string|null: false|
 |chat_member|string|null: false|
 
 ### Association
-- has_many :user
+- has_many :user, through: :groups_users
 - has_many :chat
 
 ## groups_usersテーブル
-
 |Column|Type|Options|
 |------|----|-------|
 |user_id|integer|null: false, foreign_key: true|
