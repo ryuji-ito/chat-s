@@ -1,3 +1,39 @@
-// Place all the styles related to the messages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$s_color: white;
+$h_height: 100px;
+
+.side_bar {
+  background-color: #2f3e51;
+  width: 330px;
+  height: 100%;
+  font-weight: bold;
+  .side_header {
+    color: $s_color;
+    font-size: 16px;
+    height: $h_height;
+    background-color: #253141;
+    align-items: center;
+    padding: 0 20px;
+    width: 300px;
+    display: flex;
+    .account_icon {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      font-weight: bold;
+    }
+  }
+  .side_group {
+    color: $s_color;
+    font-size: 15px;
+    .group_name {
+      .side_messages {
+        color: $s_color;
+        font-size: 11px;
+      }
+    }
+    .side_group2 {
+      .side_message2 {
+      }
+    }
+  }
+}
