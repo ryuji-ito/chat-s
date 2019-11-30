@@ -1,18 +1,18 @@
-.side_bar
-  .side_header
-    tanaka
-    %ul.account_icon
-      =link_to '#' do
-        = icon('fas', 'edit')
-
-      =link_to '#' do
-        = icon("fas", "cog")
-  .side_group
-    .group_name
-      groupname1
-      .side_messages
-      まだメッセージはありません
-    .side_group2
-      groupname2
-      .side_messages2
-      まだメッセージはありません
+.chat-side
+  .side-header
+    .side-header__box
+      .side-header__box__user-name
+        tanaka
+      .side-header__box__menu
+        .side-header__box__menu__new-group
+          =link_to '#', class: "icons_new" do
+            = icon('fas', 'edit')
+        .side-header__box__menu__edit-user
+          =link_to '#', class: "icons_edit" do
+            = icon("fas", "cog")
+  .groups
+    .group
+      .group__group-name
+        tanaka
+      .group__latest-message
+        テストメッセージ
