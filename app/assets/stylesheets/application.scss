@@ -4,12 +4,12 @@
 @import "messages";
 @import "config/colors";
 @import "modules/flash";
-// @import "modules/group";
-// @import "config/size";
-// @import "confing/reset";
+@import "./group";
+@import "./user";
+@import "./reset";
+@import "./messages.scss";
 // @import "mixins/mixin";
 // @import "mixins/vender_prefix";
 // @import "modules/side_bar";
 // @import "modules/chat";
-// @import "modules/user";
-// @import "message/messages.scss";
+// @import "config/size";

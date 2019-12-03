@@ -2,18 +2,18 @@
   .side-header
     .side-header__box
       .side-header__box__user-name
-        tanaka
+        = current_user.name
       .side-header__box__menu
         .side-header__box__menu__new-group
-          =link_to '#', class: "icons_new" do
-            = icon('fas', 'edit')
+          =link_to new_group_path do
+            = icon('fas', 'edit', class: 'icon')
         .side-header__box__menu__edit-user
-          =link_to '#', class: "icons_edit" do
-            = icon("fas", "cog")
+          =link_to edit_user_path(current_user) do
+            = icon("fas", "cog", class: 'icons_edit')
   .groups
     - current_user.groups.each do |group|
       .group
-        = link_to '#' do
+        = link_to group_messages_path(group) do
           .group__group-name
             = group.name
           .group__latest-message

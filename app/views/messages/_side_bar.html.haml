@@ -5,10 +5,10 @@
         = current_user.name
       .side-header__box__menu
         .side-header__box__menu__new-group
-          =link_to '#', new_group_path class: "icons_new" do
+          =link_to new_group_path class: "icons_new" do
             = icon('fas', 'edit', class: 'icon')
         .side-header__box__menu__edit-user
-          =link_to '#', edit_user_path(current_user) class: "icons_edit" do
+          =link_to edit_user_path(current_user) class: "icons_edit" do
             = icon("fas", "cog", class: 'icon')
   .groups
     - current_user.groups.each do |group|
