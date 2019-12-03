@@ -5,15 +5,15 @@
         = current_user.name
       .side-header__box__menu
         .side-header__box__menu__new-group
-          =link_to new_group_path class: "icons_new" do
+          =link_to new_group_path do
             = icon('fas', 'edit', class: 'icon')
         .side-header__box__menu__edit-user
-          =link_to edit_user_path(current_user) class: "icons_edit" do
+          =link_to edit_user_path(current_user) do
             = icon("fas", "cog", class: 'icon')
   .groups
     - current_user.groups.each do |group|
       .group
-        = link_to group_messages_path(group) '#' do
+        = link_to group_messages_path(group) do
           .group__group-name
             = group.name
           .group__latest-message
