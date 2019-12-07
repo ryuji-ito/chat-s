@@ -2,12 +2,16 @@
   .main-header
     .main-header__left-box
       .main-header__left-box__current-group
-        groupT
+        = @group.name
       .main-header__left-box__member-list
-        Member : tanaka
-    .main-header__edit-btn
-      Edit
+        .main-header__left-box__member-list__user
+        Member :
+        - @group.users.each do |user|
+          .main-header__left-box__member-list__user__name
+            = user.name 
+    = link_to "Edit", edit_group_path(@group.id), class: "main-header__edit-btn"
   .messages
+    = render @messages
     .message
       .message__upper-info
         .message__upper-info__talker
@@ -19,9 +23,9 @@
     .messages__second
 .form
   .form__input
-    = form_for('message')do |f|
+    = form_for [@group, @message] do |f|
       .form__input__box
-        = f.text_field :body, class: "form__input__box__message", placeholder: "type a message"
+        = f.text_field :content, class: "form__input__box__message", placeholder: "type a message"
         = f.label :image, class: "form__input__box__image" do
           = icon("far", "image", class: "form__input__box__image__icon" )
           = f.file_field :image, class: "hidden"
