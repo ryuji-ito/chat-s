@@ -39,9 +39,6 @@ $(function() {
   $(".new_message").on('submit', function(e) {
     e.preventDefault()
     var formData = new FormData(this);
-    // for(item of formData){
-    //   console.log(item);
-    //   }
     var url = $(this).attr('action')
     $.ajax({
       url: url,
@@ -51,27 +48,17 @@ $(function() {
       processData: false,
       contentType: false
     })
-     .done(function(data) {
-       var html = buildHTML(data);
-       $('.messages').append(html);
-       $('#message_content').val('');
-       $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight});
-     })
-     .always(function(data){
-       $('.form__input__box__submit-btn').prop('disabled', false);
-     })
-     .fail(function(data){
+    .done(function(data) {
+      var html = buildHTML(data);
+      $('.messages').append(html);
+      $('#message_content').val('');
+      $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight});
+    })
+    .always(function(data){
+      $('.form__input__box__submit-btn').prop('disabled', false);
+    })
+    .fail(function(data){
       alert("メッセージ送信に失敗しました");
-     })
+    })
   });
 });
-
-
-
-// $(function() {
-//   $(".new_message").on('submit', function(e) {
-//     e.preventDefault()
-//     var message = $('.form__input__box__message').val();
-//     console.log(message);
-//   });
-// });
