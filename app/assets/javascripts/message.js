@@ -61,4 +61,20 @@ $(function() {
       alert("メッセージ送信に失敗しました");
     })
   });
+
+  var reloadMessages = function() {
+    last_message_id = $('.message:last').data('message-id');
+    $.ajax({
+      url: "api/messages",
+      type: 'get',
+      dataType: 'json',
+      data: {id: last_message_id}
+    })
+    .done(function(messages) {
+      console.log('success');
+    })
+    .fail(function() {
+      console.log('error');
+    });
+  };
 });
