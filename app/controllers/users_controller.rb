@@ -3,9 +3,14 @@ class UsersController < ApplicationController
   def edit
   end
 
-  # def index
-  #   @users = User.search(params[:keyword], current_user.id)
-  # end
+  def index
+    return nil if params[:keyword] == ""
+    @users = User.where(['name LIKE ?', "%#{params[:keyword]}%"] ).where.not(id: current_user.id).limit(10)
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
 
   # def new
   #   @group = Group.new
