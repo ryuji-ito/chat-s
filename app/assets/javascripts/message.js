@@ -1,54 +1,55 @@
 $(function() {
   var buildHTML = function(message) {
     if (message.content && message.image) {
-      var html = `<div class="message" data-id=` + message.id + `>` +
-                    `<div class="message__detail">` +
-                      `<div class="message__detail__current-user-name">`
-                        message.user_name +
-                      `</div>` +
-                      `<div class="message__detail__date">` +
-                        message.date +
-                      `</div>` +
-                    `</div>` +
-                      `<div class="message_body__content">`
-                        message.content +
-                      `</div>`
-                      `<img src="` + message.image + `" class="message_body__image" >` +
-                    `</div>`
-                  `</div>`
+      var html = `<div class="message" data-id=${message.id} >
+                    <div class="message__detail">
+                      <div class="message__detail__current-user-name">
+                        ${message.user_name}
+                      </div>
+                      <div class="message__detail__date">
+                        ${message.date}
+                      </div>
+                    </div>
+                      <div class="message_body__content">
+                        ${message.content}
+                      </div>
+                      <img src=${message.image} class="message_body__image" >
+                    </div>
+                  </div>`
+                return html;
               } else if (message.content) {
-                var html = `<div class="message" data-message-id=` + message.id + `>` +
-                              `<div class="message__detail">` +
-                                `<div class="message__detail__current-user-name">` +
-                                  message.user_name +
-                                `</div>` +
-                                `<div class="message__detail__date">` +
-                                  message.date +
-                                `</div>` +
-                              `</div>` +
-                              `<div class="message_body__content">` +
-                                  message.content +
-                                `</div>` +
-                              `</div>` +
-                            `</div>` 
-              } else if (message.image) {
-                var html = `<div class="message" data-message-id=` + message.id + `>` +
-                `<div class="message__detail">` +
-                  `<div class="message__detail__user-name">` +
-                    message.user_name +
-                  `</div>` +
-                  `<div class="message__detail__date">` +
-                    message.created_at +
-                  `</div>` +
-                `</div>` +
-                `<div class="message_body">` +
-                  `<img src="` + message.image + `" class="message_body__image" >` +
-                `</div>` +
-              `</div>`
-              };
+                var html = `<div class="message" data-id=${message.id}>
+                              <div class="message__detail">
+                                <div class="message__detail__current-user-name">
+                                  ${message.user_name}
+                                </div>
+                                <div class="message__detail__date">
+                                  ${message.date}
+                                </div>
+                              </div>
+                              <div class="message_body__content">
+                                  ${message.content}
+                                </div>
+                              </div>
+                            </div>`
                           return html;
-                        };
-                      
+              } else if (message.image) {
+                var html = `<div class="message" data-id=${message.id}>
+                <div class="message__detail">
+                  <div class="message__detail__user-name">
+                    ${message.user_name}
+                  </div>
+                  <div class="message__detail__date">
+                    ${message.date}
+                  </div>
+                </div>
+                <div class="message_body">
+                  <img src=${message.image} class="message_body__image" >
+                </div>
+              </div>`
+              };
+            return html;
+          };
 
   $(".new_message").on('submit', function(e) {
     e.preventDefault()
@@ -77,7 +78,7 @@ $(function() {
   })
 
   var reloadMessages = function() {
-    last_message_id = $('.message:last').data('message-id');
+    last_message_id = $('.message:last').data('id');
     $.ajax({
       url: "api/messages",
       type: 'get',
@@ -93,9 +94,8 @@ $(function() {
       $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight});
     })
     .fail(function() {
-      console.log('error');
+      alert("エラー");
     });
-
   };
   setInterval(reloadMessages, 7000);
 });
