@@ -1,7 +1,7 @@
 $(function() {
-  function buildHTML(message){
-    if (message.image) {
-      var html = `<div class="message" data-id=${message.id}>
+  var buildHTML = function(message) {
+    if (message.content && message.image) {
+      var html = `<div class="message" data-id=${message.id} >
                     <div class="message__detail">
                       <div class="message__detail__current-user-name">
                         ${message.user_name}
@@ -13,11 +13,11 @@ $(function() {
                       <div class="message_body__content">
                         ${message.content}
                       </div>
+                      <img src=${message.image} class="message_body__image" >
                     </div>
-                    <img src=${message.image} >
                   </div>`
                 return html;
-              } else {
+              } else if (message.content) {
                 var html = `<div class="message" data-id=${message.id}>
                               <div class="message__detail">
                                 <div class="message__detail__current-user-name">
@@ -29,12 +29,27 @@ $(function() {
                               </div>
                               <div class="message_body__content">
                                   ${message.content}
-                                </p>
+                                </div>
                               </div>
                             </div>`
                           return html;
-                        };
-                      }
+              } else if (message.image) {
+                var html = `<div class="message" data-id=${message.id}>
+                <div class="message__detail">
+                  <div class="message__detail__user-name">
+                    ${message.user_name}
+                  </div>
+                  <div class="message__detail__date">
+                    ${message.date}
+                  </div>
+                </div>
+                <div class="message_body">
+                  <img src=${message.image} class="message_body__image" >
+                </div>
+              </div>`
+              };
+            return html;
+          };
 
   $(".new_message").on('submit', function(e) {
     e.preventDefault()
@@ -60,5 +75,27 @@ $(function() {
     .fail(function(data){
       alert("メッセージ送信に失敗しました");
     })
-  });
+  })
+
+  var reloadMessages = function() {
+    last_message_id = $('.message:last').data('id');
+    $.ajax({
+      url: "api/messages",
+      type: 'get',
+      dataType: 'json',
+      data: {id: last_message_id}
+    })
+    .done(function(messages) {
+      var insertHTML = '';
+      $.each(messages, function(i, message) {
+        insertHTML += buildHTML(message)
+      });
+      $('.messages').append(insertHTML);
+      $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight});
+    })
+    .fail(function() {
+      alert("エラー");
+    });
+  };
+  setInterval(reloadMessages, 7000);
 });
