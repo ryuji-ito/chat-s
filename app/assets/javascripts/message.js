@@ -96,7 +96,7 @@ $(function() {
       $('form')[0].reset();
     })
     .fail(function() {
-      alert("エラ");
+      alert("エラー");
     });
   };
   setInterval(reloadMessages, 7000);
