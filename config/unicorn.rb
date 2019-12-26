@@ -21,8 +21,6 @@ stdout_path "#{app_path}/shared/log/unicorn.stdout.log"
 #Railsアプリケーションの応答を待つ上限時間を設定
 timeout 80
 
-# secrets.yml用のシンボリックリンクを追加
-set :linked_files, %w{ config/master.key }
 
 #以下は応用的な設定なので説明は割愛
 
