@@ -68,6 +68,7 @@ $(function() {
       $('.messages').append(html);
       $('#message_content').val('');
       $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight});
+      $('form')[0].reset();
     })
     .always(function(data){
       $('.form__input__box__submit-btn').prop('disabled', false);
@@ -92,6 +93,7 @@ $(function() {
       });
       $('.messages').append(insertHTML);
       $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight});
+      $('form')[0].reset();
     })
     .fail(function() {
       alert("エラー");
