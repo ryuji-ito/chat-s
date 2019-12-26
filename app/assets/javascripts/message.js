@@ -96,8 +96,8 @@ $(function() {
       $('form')[0].reset();
     })
     .fail(function() {
-      alert("エラー");
+      alert("エラ");
     });
   };
   setInterval(reloadMessages, 7000);
-});
+}
