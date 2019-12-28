@@ -10,12 +10,12 @@ $(function() {
                         ${message.date}
                       </div>
                     </div>
-                      <div class="message__lower-message">
+                    <div class="message__lower-message">
+                      <p class="message__lower-message__content">
                         ${message.content}
-                      </div>
-                      <div class="message__lower-message">
-                        <img src=${message.image} class="message__body__image" >
-                      </div>
+                      </p>
+                      <img src=${message.image} class="lower-message__image" >
+                    </div>
                   </div>`
                 return html;
               } else if (message.content) {
@@ -29,8 +29,7 @@ $(function() {
                                 </div>
                               </div>
                               <div class="message__lower-message">
-                                  ${message.content}
-                                </div>
+                                ${message.content}
                               </div>
                             </div>`
                           return html;
@@ -39,16 +38,16 @@ $(function() {
                               <div class="message__upper-message">
                                 <div class="message__upper-message__user-name">
                                     ${message.user_name}
-                                  </div>
-                                  <div class="message__upper-message__date">
-                                    ${message.date}
-                                  </div>
                                 </div>
-                                <div class="message__lower-message">
-                                  <img src=${message.image} class="message__body__image" >
+                                <div class="message__upper-message__date">
+                                  ${message.date}
                                 </div>
-                              </div>`
-                              };
+                              </div>
+                              <div class="message__lower-message">
+                                <img src=${message.image} class="lower-message__image" >
+                              </div>
+                            </div>`
+              };
             return html;
           };
 
@@ -67,7 +66,6 @@ $(function() {
     .done(function(data) {
       var html = buildHTML(data);
       $('.messages').append(html);
-      $('#message_content').val('');
       $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight});
       $('form')[0].reset();
     })
@@ -94,7 +92,6 @@ $(function() {
       });
       $('.messages').append(insertHTML);
       $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight});
-      $('form')[0].reset();
     })
     .fail(function() {
       alert("エラー");
