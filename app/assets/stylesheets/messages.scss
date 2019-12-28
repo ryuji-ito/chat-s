@@ -19,6 +19,7 @@ $s_color: white;
       width: 100%;
       font-weight: bold;
       &__user-name {
+        font-size: 16px;
       }
       &__menu {
         display: flex;
@@ -108,23 +109,22 @@ $s_color: white;
     background-color: #fafafa;
     overflow: scroll;
     .message {
-      &__upper-info {
+      &__upper-message {
         display: flex;
-        &__talker {
+        &__user-name {
           font-weight: bold;
         }
         &__date {
           font-size: 12px;
-          padding-left: 10px;
           color: #999999;
+          padding-left: 10px;
         }
       }
-      &__text {
+      &__lower-message {
         padding-top: 10px;
         font-size: 14px;
+        padding-bottom: 40px;
       }
-    }
-    .messages__second {
     }
   }
 }

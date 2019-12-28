@@ -2,32 +2,33 @@ $(function() {
   var buildHTML = function(message) {
     if (message.content && message.image) {
       var html = `<div class="message" data-id=${message.id} >
-                    <div class="message__detail">
-                      <div class="message__detail__current-user-name">
+                    <div class="message__upper-message">
+                      <div class="message__upper-message__user-name">
                         ${message.user_name}
                       </div>
-                      <div class="message__detail__date">
+                      <div class="message__upper-message__date">
                         ${message.date}
                       </div>
                     </div>
-                      <div class="message_body__content">
+                      <div class="message__lower-message">
                         ${message.content}
                       </div>
-                      <img src=${message.image} class="message_body__image" >
-                    </div>
+                      <div class="message__lower-message">
+                        <img src=${message.image} class="message__body__image" >
+                      </div>
                   </div>`
                 return html;
               } else if (message.content) {
                 var html = `<div class="message" data-id=${message.id}>
-                              <div class="message__detail">
-                                <div class="message__detail__current-user-name">
+                              <div class="message__upper-message">
+                                <div class="message__upper-message__user-name">
                                   ${message.user_name}
                                 </div>
-                                <div class="message__detail__date">
+                                <div class="message__upper-message__date">
                                   ${message.date}
                                 </div>
                               </div>
-                              <div class="message_body__content">
+                              <div class="message__lower-message">
                                   ${message.content}
                                 </div>
                               </div>
@@ -35,19 +36,19 @@ $(function() {
                           return html;
               } else if (message.image) {
                 var html = `<div class="message" data-id=${message.id}>
-                <div class="message__detail">
-                  <div class="message__detail__user-name">
-                    ${message.user_name}
-                  </div>
-                  <div class="message__detail__date">
-                    ${message.date}
-                  </div>
-                </div>
-                <div class="message_body">
-                  <img src=${message.image} class="message_body__image" >
-                </div>
-              </div>`
-              };
+                              <div class="message__upper-message">
+                                <div class="message__upper-message__user-name">
+                                    ${message.user_name}
+                                  </div>
+                                  <div class="message__upper-message__date">
+                                    ${message.date}
+                                  </div>
+                                </div>
+                                <div class="message__lower-message">
+                                  <img src=${message.image} class="message__body__image" >
+                                </div>
+                              </div>`
+                              };
             return html;
           };
 
